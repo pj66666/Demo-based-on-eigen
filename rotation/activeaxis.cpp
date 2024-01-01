@@ -1,7 +1,7 @@
 #include <iostream>
 #include <Eigen/Core>
 #include <Eigen/Geometry>
-
+#include <gflags/gflags.h>
 using namespace std;
 
 #define M_PI       3.14159265358979323846 
@@ -21,44 +21,54 @@ Eigen::Matrix3d YPR2Rotation(double yaw,double pitch, double roll);
 Eigen::AngleAxisd roll_x = Eigen::AngleAxisd(roll, yaw_z * Eigen::Vector3d::UnitX());
 */
 
+DEFINE_double(x1, 1, "the first frame of x coordinate");
+DEFINE_double(y1, 1, "the first frame of y coordinate");
+DEFINE_double(z1, 0, "the first frame of z coordinate");
+
+DEFINE_double(x2, 1, "the second frame of x coordinate");
+DEFINE_double(y2, 0, "the second frame of y coordinate");
+DEFINE_double(z2, -1, "the second frame of z coordinate");
+
 int main(int argc, char** argv) {
+
+    gflags::ParseCommandLineFlags(&argc, &argv, true);
 
     double yaw = M_PI / 2;
     double pitch = 0;
     double roll = -M_PI / 2;
-        
-    /********************Method 1: 利用角轴来计算*********************************************/
-    Eigen::Vector3d v_1(1, 1, 0);     // 旋转前的点  在第1个坐标系中点（1，1，1）
+    /********************确定两个坐标系中相同向量的坐标**************************************/ 
+
+    Eigen::Vector3d v_1(FLAGS_x1, FLAGS_y1, FLAGS_z1);     // 旋转前的点  在第1个坐标系中点（1，1，1）
     Eigen::Vector3d v_R1;             // 旋转后的点 第1个坐标系中点（1，1，1）在第2个坐标系坐标(1,-1,-1)
-    Eigen::Vector3d v_2(1, 0, -1);     // 第2个坐标系中点（1，-1，-1）
+    Eigen::Vector3d v_2(FLAGS_x2, FLAGS_y2, FLAGS_z2);     // 第2个坐标系中点（1，-1，-1）
     Eigen::Vector3d v_R2;             // 第2个坐标系中点（1，-1，-1）在第1个坐标系坐标(1,1,1)
+
+    /********************Method 1: 利用角轴来计算*********************************************/
 
     // 绕动轴旋转一定的角度，顺序Z Y X,   即ypr  先转的放前面
     Eigen::Matrix3d R12_;
 
     // 第1步，绕z轴旋转M_PI / 2，
     Eigen::AngleAxisd yaw_z = Eigen::AngleAxisd(yaw, Eigen::Vector3d::UnitZ());
-    // cout << "Axis: " << yaw_z.axis().transpose() << endl;   // 0 0 1
 
     // 第2步，绕x轴旋转-M_PI / 2
     Eigen::AngleAxisd roll_x_1 = Eigen::AngleAxisd(roll, Eigen::Vector3d::UnitX());
-    // cout << "Axis: " << roll_x.axis().transpose() << endl;  // 0 1 0
 
     R12_ = yaw_z.toRotationMatrix()*roll_x_1.toRotationMatrix();
 
 
     v_R1 = R12_.transpose() * v_1;    // 因为是要把1坐标系下点投影到 2坐标系下，所以需要的是旋转矩阵R21（ = R12.transpose()；）
-    cout << v_R1.transpose() << endl;
+    cout << "Method 1: 利用角轴来计算 " << v_R1.transpose() << endl;
 
     // R12_两次含义：一个是把坐标轴1转到坐标轴2.一个是把坐标系2中点投影到坐标系1
     v_R2 = R12_*v_2;
-    cout << v_R2.transpose() << endl << endl;
+    cout << "检验：坐标系2投影到坐标系1中 " << v_R2.transpose() << endl << endl;
 
 
     /********************Method 2: 利用公式来计算*********************************************/
     Eigen::Matrix3d YPR = YPR2Rotation(yaw,pitch,roll);
     Eigen::Vector3d v = YPR * v_2;
-    cout << v.transpose() << endl << endl;
+    cout << "Method 2: 利用公式来计算 " << v.transpose() << endl << endl;
 }
 
 

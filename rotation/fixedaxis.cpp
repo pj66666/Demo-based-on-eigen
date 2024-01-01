@@ -1,6 +1,7 @@
 #include <iostream>
 #include <Eigen/Core>
 #include <Eigen/Geometry>
+#include <gflags/gflags.h>
 
 using namespace std;
 
@@ -10,10 +11,17 @@ Eigen::Matrix3d RPY2Rotation(double roll, double pitch, double yaw);
 
 /*绕固定轴X-Y-Z旋转，即rpy的旋转方式,先转的放后面*/
 
+DEFINE_double(x1, 1, "the first frame of x coordinate");
+DEFINE_double(y1, 1, "the first frame of y coordinate");
+DEFINE_double(z1, 0, "the first frame of z coordinate");
+
+
 int main(int argc, char** argv) {
 
-    Eigen::Vector3d v(1, 1, 1);      // 旋转前的点   (1,1,0)
-    Eigen::Vector3d v_R,v1;             // 旋转后的点	 (1,0,-1)
+    gflags::ParseCommandLineFlags(&argc, &argv, true);
+
+    Eigen::Vector3d v(FLAGS_x1, FLAGS_y1, FLAGS_z1);      // 旋转前的点   (1,1,0)
+    Eigen::Vector3d v_R;             // 旋转后的点	 (1,0,-1)
     // cout.precision(3);
 
     /********************Method 1: 利用角轴来计算*********************************************/
@@ -25,14 +33,14 @@ int main(int argc, char** argv) {
         * Eigen::AngleAxisd(-M_PI / 2, Eigen::Vector3d::UnitX());
 
     v_R = R12.transpose() * v;    // 因为是要把1坐标系下点投影到 2坐标系下，所以需要的是旋转矩阵R21（ = R12.transpose()；）
-    cout << v_R.transpose() << endl;// 2系下的坐标
-    cout << R12.transpose() << endl;
+    cout << "Method 1: 利用角轴来计算 " << v_R.transpose() << endl;// 2系下的坐标
+    // cout << R12.transpose() << endl;
 
 
     /********************Method 2: 利用公式来计算*********************************************/
     Eigen::Matrix3d R12_ = RPY2Rotation(-M_PI / 2, 0, M_PI / 2);    // 套公式算出来的结果的精度是要更高一点的！所以看起来会有点不一样
     Eigen::Vector3d v_R1 = R12_.transpose() * v;
-    cout << v_R1.transpose() << endl;
+    cout << "Method 2: 利用公式来计算 " << v_R1.transpose() << endl;
 }
 
 // 固定轴   rpy   先转的放后面

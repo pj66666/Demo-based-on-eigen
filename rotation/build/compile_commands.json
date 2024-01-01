@@ -1,0 +1,12 @@
+[
+{
+  "directory": "/home/pj/pj/test_eigen_or_others/rotation/build",
+  "command": "/usr/bin/c++  -DGFLAGS_IS_A_DLL=0 -I/usr/include/eigen3  -g   -o CMakeFiles/activeaxis.dir/activeaxis.cpp.o -c /home/pj/pj/test_eigen_or_others/rotation/activeaxis.cpp",
+  "file": "/home/pj/pj/test_eigen_or_others/rotation/activeaxis.cpp"
+},
+{
+  "directory": "/home/pj/pj/test_eigen_or_others/rotation/build",
+  "command": "/usr/bin/c++  -DGFLAGS_IS_A_DLL=0 -I/usr/include/eigen3  -g   -o CMakeFiles/fixedaxis.dir/fixedaxis.cpp.o -c /home/pj/pj/test_eigen_or_others/rotation/fixedaxis.cpp",
+  "file": "/home/pj/pj/test_eigen_or_others/rotation/fixedaxis.cpp"
+}
+]
