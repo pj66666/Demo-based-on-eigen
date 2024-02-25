@@ -1,1 +1,0 @@
-/usr/bin/c++  -g  -rdynamic CMakeFiles/feature_vector.dir/feature_vector.cpp.o  -o feature_vector 

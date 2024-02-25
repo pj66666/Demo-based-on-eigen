@@ -1,7 +1,0 @@
-[
-{
-  "directory": "/home/pj/pj/test_eigen_or_others/eigen_Feature_vectors/build",
-  "command": "/usr/bin/c++   -I/usr/include/eigen3  -g   -o CMakeFiles/feature_vector.dir/feature_vector.cpp.o -c /home/pj/pj/test_eigen_or_others/eigen_Feature_vectors/feature_vector.cpp",
-  "file": "/home/pj/pj/test_eigen_or_others/eigen_Feature_vectors/feature_vector.cpp"
-}
-]

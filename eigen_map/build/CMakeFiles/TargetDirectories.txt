@@ -1,3 +1,0 @@
-/home/pj/pj/test_eigen_or_others/eigen_map/build/CMakeFiles/rebuild_cache.dir
-/home/pj/pj/test_eigen_or_others/eigen_map/build/CMakeFiles/edit_cache.dir
-/home/pj/pj/test_eigen_or_others/eigen_map/build/CMakeFiles/test_eigen_map.dir

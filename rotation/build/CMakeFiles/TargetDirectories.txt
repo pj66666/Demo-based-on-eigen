@@ -1,4 +1,0 @@
-/home/pj/pj/test_eigen_or_others/rotation/build/CMakeFiles/rebuild_cache.dir
-/home/pj/pj/test_eigen_or_others/rotation/build/CMakeFiles/activeaxis.dir
-/home/pj/pj/test_eigen_or_others/rotation/build/CMakeFiles/edit_cache.dir
-/home/pj/pj/test_eigen_or_others/rotation/build/CMakeFiles/fixedaxis.dir

@@ -1,7 +1,0 @@
-[
-{
-  "directory": "/home/pj/pj/test_eigen_or_others/eigen_map/build",
-  "command": "/usr/bin/c++   -I/usr/include/eigen3  -g   -o CMakeFiles/test_eigen_map.dir/test_eigen_map.cpp.o -c /home/pj/pj/test_eigen_or_others/eigen_map/test_eigen_map.cpp",
-  "file": "/home/pj/pj/test_eigen_or_others/eigen_map/test_eigen_map.cpp"
-}
-]

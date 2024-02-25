@@ -1,1 +1,0 @@
-/usr/bin/c++  -g   CMakeFiles/activeaxis.dir/activeaxis.cpp.o  -o ../bin/activeaxis  /usr/local/lib/libgflags.a -lpthread 
