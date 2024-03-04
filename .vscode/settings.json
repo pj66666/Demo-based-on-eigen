@@ -1,5 +1,8 @@
 {
     "files.associations": {
-        "core": "cpp"
-    }
+        "core": "cpp",
+        "chrono": "cpp",
+        "complex": "cpp"
+    },
+    "cmake.sourceDirectory": "/home/pj/pj/test_eigen_or_others/eigen_QR_test"
 }

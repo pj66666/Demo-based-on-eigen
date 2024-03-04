@@ -1,0 +1,1 @@
+/usr/bin/c++   -std=c++11   CMakeFiles/QR.dir/QR.cpp.o  -o ../bin/QR 

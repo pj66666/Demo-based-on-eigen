@@ -33,6 +33,8 @@ int main()
 
     // 随机数生成 1 个 三维特征点
     std::default_random_engine generator;
+    double w_sigma = 0.1;
+    std::normal_distribution<double> noise(0.,w_sigma);
     std::uniform_real_distribution<double> xy_rand(-4, 4.0);
     std::uniform_real_distribution<double> z_rand(8., 10.);
     double tx = xy_rand(generator);
@@ -51,7 +53,11 @@ int main()
         double y = Pc.y();
         double z = Pc.z();
 
-        camera_pose[i].uv = Eigen::Vector2d(x/z,y/z);
+        double x_noise = x/z + noise(generator);
+        double y_noise = y/z + noise(generator);
+
+        // camera_pose[i].uv = Eigen::Vector2d(x/z,y/z);
+        camera_pose[i].uv = Eigen::Vector2d(x_noise,y_noise);
     }
     
     /// TODO::homework; 请完成三角化估计深度的代码

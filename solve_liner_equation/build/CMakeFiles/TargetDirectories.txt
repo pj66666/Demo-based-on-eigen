@@ -1,0 +1,3 @@
+/home/pj/pj/test_eigen_or_others/solve_liner_equation/build/CMakeFiles/rebuild_cache.dir
+/home/pj/pj/test_eigen_or_others/solve_liner_equation/build/CMakeFiles/edit_cache.dir
+/home/pj/pj/test_eigen_or_others/solve_liner_equation/build/CMakeFiles/SLE.dir
